@@ -16,7 +16,6 @@ app.add_middleware(
 class JointAngles(BaseModel):
     theta1: float
     theta2: float
-    theta3: float
 
 
 @app.post("/calculate")

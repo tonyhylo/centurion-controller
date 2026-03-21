@@ -2,8 +2,8 @@
 
 **Objective**: Develop a decoupled hardware-control system that translates user-inputted joint angles into a calculated spatial position (End-Effector coordinates).
 
-## 🛠️ The Tech StackBackend: 
-- Python with FastAPI.
+## 🛠️ The Tech Stack
+- Backend: Python with FastAPI.
 - Frontend: React (Vite preferred).
 - Math Library: NumPy (for handling trigonometric operations).
 
@@ -35,6 +35,6 @@ To pass this assignment, you must solve a common robotics problem within your co
 
 ## 📥 Deliverable Requirements
 To consider this project "complete," you should be able to:
-- Move the $\theta_1$ slider on your Surface Laptop.
+- Move the $\theta_1$ slider on the browser.
 - See the FastAPI terminal log the incoming request.
 - See the $(x, y)$ coordinates on your React screen update instantly.
