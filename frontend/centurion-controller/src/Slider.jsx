@@ -27,6 +27,13 @@ export default function ContinuousSlider() {
     theta2: 0
   })
 
+  const [coordinates, setCoordinates] = React.useState({
+    x: 0,
+    y:0
+  })
+
+  const [error, setError] = React.useState("");
+
   React.useEffect(() => {
     sendDataToRobot(angles);
   }, [angles])
@@ -42,6 +49,15 @@ export default function ContinuousSlider() {
       },
       body: JSON.stringify(angles),
     });
+
+    if (response.ok){
+      const data = await response.json();
+      setCoordinates(data);
+      setError("")
+    } else {
+      const errorData = await response.json();
+      setError(errorData.detail);
+    }
   }
 
   return (
@@ -89,6 +105,12 @@ export default function ContinuousSlider() {
       </div>
       <div>
         theta2: {angles.theta2}
+      </div>
+      <div>
+        x: {coordinates.x}
+      </div>
+      <div>
+        y: {coordinates.y}
       </div>
     </Box>
   );
