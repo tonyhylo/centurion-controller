@@ -23,7 +23,7 @@ async def get_coordinates(angles: JointAngles):
     x, y = CalculateKinematics(angles.theta1, angles.theta2)
     singularity = CalculateSingularity(angles.theta2)
 
-    if y < 0 or singularity > 0.1:
+    if y < 0 or singularity < 0.1:
         if y < 0 :
             raise HTTPException(
                 status_code=400, 
