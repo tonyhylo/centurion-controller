@@ -21,12 +21,25 @@ class JointAngles(BaseModel):
 @app.post("/calculate")
 async def get_coordinates(angles: JointAngles):
     x, y = CalculateKinematics(angles.theta1, angles.theta2)
+    singularity = CalculateSingularity(angles.theta2)
 
-    return {
-        "x": round(x, 2),
-        "y": round(y, 2),
-        "Status": "Safe"
-    }
+    if y < 0 or singularity > 0.1:
+        if y < 0 :
+            raise HTTPException(
+                status_code=400, 
+                detail="Collision Warning: Joint trajectory will collide with the floor (y < 0)."
+            )
+        else:
+            raise HTTPException(
+                status_code=400, 
+                detail="Singularity Warning: Arm is fully extended or folded."
+            )
+    else:
+        return {
+            "x": round(x, 2),
+            "y": round(y, 2),
+            "Status": "Safe"
+        }
 
 def CalculateKinematics(theta1: float, theta2: float):
     L1 = 20
@@ -39,3 +52,10 @@ def CalculateKinematics(theta1: float, theta2: float):
     y = L1 * math.sin(theta1r) + L2*math.sin(theta1r+theta2r)
 
     return x, y
+
+def CalculateSingularity(theta2: float):
+    L1 = 20
+    L2 = 10
+    theta2r = math.radians(theta2)
+
+    return L1*L2*math.sin(theta2r)

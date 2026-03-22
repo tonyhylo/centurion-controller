@@ -1,0 +1,45 @@
+.robot-display {
+    height: 200px;
+    border-bottom: 20px solid black;
+    margin-bottom: 90px;
+    position: relative;
+}
+
+.links {
+    background-color: blue;
+    height: 20px;
+    border-radius: 10px;
+    transition: transform 0.1s ease-out; 
+    position: absolute;
+    transform-origin: left center; 
+    display: flex;
+    align-items: center;
+}
+
+.link1 {
+    width:  100px;
+    background-color: blue;
+    left: 50%;
+    top: 95%;
+}
+
+.link2 {
+    width:  50px;
+    left: 100%;
+    bottom: 0%; 
+    transform: translate(-50%, -50%);
+}
+
+.joints {
+    width: 25px;
+    height: 25px;
+    background: red;
+    border-radius: 50%;
+    position: absolute;
+    /* left: 100%; Center the joint on the pivot */
+    /* top: 50%; */
+    transform: translate(-50%, 0%);
+    left: 0%; /* Center the joint on the pivot */
+    top: -12.5%;
+}
+
